@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Home</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        .welcome-box {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .typing {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="welcome-box">
+        <h2>🏠 Welcome to My Portfolio Website</h2>
+        <p>I’m <strong>Vaibhav Chaudhary</strong> —</p>
+        <p class="typing" id="typing"></p>
+    </div>
+
+    <script>
+        const textArray = [
+            "MLAI Engineer 👨‍💻",
+            "Data Scientist 🌐",
+            "AI Enthusiast 🤖",
+            "Creative Problem Solver 💡"
+        ];
+        let i = 0, j = 0, currentText = "", isDeleting = false;
+
+        function typeEffect() {
+            if (i < textArray.length) {
+                if (!isDeleting && j <= textArray[i].length) {
+                    currentText = textArray[i].substring(0, j++);
+                } else if (isDeleting && j >= 0) {
+                    currentText = textArray[i].substring(0, j--);
+                }
+
+                document.getElementById("typing").textContent = currentText;
+
+                if (j === textArray[i].length) {
+                    isDeleting = true;
+                    setTimeout(typeEffect, 1000);
+                } else if (j === 0) {
+                    isDeleting = false;
+                    i = (i + 1) % textArray.length;
+                    setTimeout(typeEffect, 300);
+                } else {
+                    setTimeout(typeEffect, isDeleting ? 40 : 100);
+                }
+            }
+        }
+
+        typeEffect();
+    </script>
+</body>
+
+</html>
